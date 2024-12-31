@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>נהל שיחות עם עצמך</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="chat-list">
+            <div class="chat-list-header">
+                <h3>Chats</h3>
+                <button id="new-chat-button">+ New Chat</button>
+            </div>
+            <ul id="chat-list">
+                <!-- Chat items will be dynamically populated -->
+            </ul>
+        </div>
+        <div class="chat-container">
+            <div class="header">
+                <div class="user-switch">
+                    <label for="user-select">משתמש פעיל:</label>
+                    <select id="user-select">
+                        <option value="אני">אני</option>
+                        <option value="עצמי">עצמי</option>
+                    </select>
+                </div>
+                <!-- Menu with hamburger icon for options -->
+                <div class="menu">
+                    &#x22EE; <!-- Ellipsis icon for the menu -->
+                    <div class="menu-dropdown">
+                        <button id="export-chat">Export Chats</button>
+                        <button id="import-chat">Import Chats</button>
+                        <input type="file" id="import-file" style="display: none;" accept=".json">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="chat-window" class="chat-window">
+                <!-- Messages will appear here -->
+            </div>
+
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Type your message..." required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

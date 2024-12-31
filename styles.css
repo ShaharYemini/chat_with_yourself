@@ -1,0 +1,305 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.chat-container {
+    width: 75%;
+    max-width: 90%;
+    flex-grow: 1;
+    margin: auto 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    position: relative;
+}
+
+/* Header with user switch and menu */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+.user-switch {
+    display: flex;
+    align-items: center;
+}
+
+.user-switch label {
+    margin-right: 10px;
+}
+
+.menu {
+    cursor: pointer;
+    font-size: 30px; /* For the hamburger icon (ellipsis) */
+}
+
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.menu:hover .menu-dropdown {
+    display: block;
+}
+
+.menu-dropdown button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px; /* Add spacing between buttons */
+    width: 100%; /* Ensure full width in the dropdown */
+}
+
+.menu-dropdown button:hover {
+    background-color: #0056b3;
+}
+
+.chat-window {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align messages at the bottom */
+    font-size: 20px;
+}
+
+
+.chat-form {
+    display: flex;
+    padding: 10px;
+    background: #ddd;
+    z-index: 10;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.chat-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px; /* Space between input and button */
+    margin-left: 10px;  /* Optional: Adds space between the left edge and input */
+}
+
+.chat-form button {
+    padding: 10px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px; /* Optional: Adds space between the button and right edge */
+}
+
+
+.chat-form button:hover {
+    background: #0056b3;
+}
+
+/* Message styling */
+.message {
+    display: inline-block;
+    max-width: 75%; /* Consistent width for messages */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    position: relative; /* Enable positioning for child elements */
+}
+
+/* Sender's name styling */
+.sender-name {
+    display: block;
+    font-size: 12px; /* Smaller font for the sender's name */
+    color: #555; /* Gray color for the name */
+    text-align: right; /* Align the name to the top-right */
+    margin-bottom: 5px; /* Add spacing between the name and the message text */
+}
+
+/* Message text styling */
+.message-text {
+    margin: 0; /* Remove default paragraph margins */
+    color: #000; /* Ensure the message text is clear */
+}
+
+/* Messages from the current user (right-aligned) */
+.message.User1 {
+    background-color: #d1e7ff;
+    align-self: flex-end; /* Align to the right */
+}
+
+/* Messages from the other user (left-aligned) */
+.message.User2 {
+    background-color: #ffd1d1;
+    align-self: flex-start; /* Align to the left */
+}
+
+.context-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.context-menu:hover {
+    background-color: #f0f0f0;
+}
+
+.response-reference {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.response-preview {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #e9ecef;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+}
+
+/* Parent container to accommodate sidebar and chat window */
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Chat list styles */
+.chat-list {
+    width: 25%;
+    max-width: 300px;
+    background: #f8f9fa;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.chat-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.chat-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    background: #e9ecef;
+    transition: background-color 0.3s;
+}
+
+.chat-list li:hover {
+    background: #d1e7ff;
+}
+
+.chat-list li.active {
+    background: #007bff;
+    color: white;
+}
+
+#new-chat-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#new-chat-button:hover {
+    background: #0056b3;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-item:hover {
+    background-color: #e0e0e0;
+}
+
+.chat-item-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.chat-icon:hover {
+    opacity: 1;
+}
+
+.chat-name {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 14px;
+}
+
+#chat-input:focus {
+    outline: 2px solid #007bff; /* Add a blue outline to indicate focus */
+}
