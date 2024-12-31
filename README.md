@@ -1,2 +1,2 @@
-# chat_wiith_yourself
+# chat_with_yourself
  
